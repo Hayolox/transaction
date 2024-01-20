@@ -37,7 +37,7 @@ class TransactionCubit extends Cubit<TransactionCubitState> {
         {
           "item_id": itemId,
           "qty": qty,
-          "date": "2024-01-20",
+          "date": date,
         },
       );
       emit(

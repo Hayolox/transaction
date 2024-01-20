@@ -120,11 +120,12 @@ class _BuyItemPageState extends State<BuyItemPage> {
                 BlocListener<TransactionCubit, TransactionCubitState>(
                   listener: (context, state) {
                     if (state is TransactionPostingState) {
-                      Navigator.pushReplacement(
+                      Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const HomePage(),
                         ),
+                        (Route<dynamic> route) => false,
                       );
                     }
                   },
