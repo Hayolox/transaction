@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/bloc/transaction_cubit_cubit.dart';
+import 'package:flutter_application_1/pages/scan_qr_code_page.dart';
 import 'package:flutter_application_1/utility/utility.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +15,22 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Data Pembelian"),
           centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScanQrCodePage(),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.qr_code),
+              ),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

@@ -12,10 +12,40 @@ class TransactionCubit extends Cubit<TransactionCubitState> {
     try {
       var resultTransactionList = await TransactionApi().getTransactionList();
 
-      emit(TransactionGetListState(responseModel: resultTransactionList));
+      emit(
+        TransactionGetListState(responseModel: resultTransactionList),
+      );
     } catch (e) {
       emit(
         TransactionGetErrorListState(
+          error: e.toString(),
+        ),
+      );
+    }
+  }
+
+  void postTransaction({
+    required String itemId,
+    required String qty,
+    required String date,
+  }) async {
+    try {
+      emit(
+        TransactionLoadingState(),
+      );
+      dynamic result = await TransactionApi().postTransaction(
+        {
+          "item_id": itemId,
+          "qty": qty,
+          "date": "2024-01-20",
+        },
+      );
+      emit(
+        TransactionPostingState(response: result),
+      );
+    } catch (e) {
+      emit(
+        TransactionPostingErorState(
           error: e.toString(),
         ),
       );
