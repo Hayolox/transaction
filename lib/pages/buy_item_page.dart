@@ -5,19 +5,18 @@ import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyItemPage extends StatefulWidget {
-  const BuyItemPage({Key? key, required this.itemMaterModel}) : super(key: key);
+  const BuyItemPage({super.key, required this.itemMaterModel});
 
   final ItemMaterModel itemMaterModel;
 
   @override
-  // ignore: library_private_types_in_public_api
-  _BuyItemPageState createState() => _BuyItemPageState();
+  State<BuyItemPage> createState() => _BuyItemPageState();
 }
 
-TextEditingController qTYController = TextEditingController();
-DateTime? selectedDate;
-
 class _BuyItemPageState extends State<BuyItemPage> {
+  TextEditingController qTYController = TextEditingController();
+  DateTime? selectedDate;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
