@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -34,12 +34,11 @@ class _ScanQrCodePageState extends State<ScanQrCodePage> {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       if (!isCodeDetected && scanData.code!.isNotEmpty) {
-        log("masuk");
         isCodeDetected = true;
         ItemMaterModel itemMaterModel = ItemMaterModel.fromJson(
           jsonDecode(scanData.code!),
         );
-        controller.stopCamera();
+
         Navigator.push(
           context,
           MaterialPageRoute(
