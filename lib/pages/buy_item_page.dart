@@ -128,6 +128,10 @@ class _BuyItemPageState extends State<BuyItemPage> {
                         (Route<dynamic> route) => false,
                       );
                     }
+
+                    if (state is TransactionPostingErorState) {
+                      return _showSnackbar(context, state.error);
+                    }
                   },
                   child: BlocBuilder<TransactionCubit, TransactionCubitState>(
                     builder: (context, state) {
@@ -137,6 +141,8 @@ class _BuyItemPageState extends State<BuyItemPage> {
                           child: const Text('Loading...'),
                         );
                       }
+
+                      if (state is TransactionPostingErorState) {}
                       return ElevatedButton(
                         onPressed: qTYController.text.isNotEmpty &&
                                 selectedDate != null
@@ -162,6 +168,15 @@ class _BuyItemPageState extends State<BuyItemPage> {
         ),
       ),
     );
+  }
+
+  void _showSnackbar(BuildContext context, String errorMessage) {
+    final snackbar = SnackBar(
+      content: Text(errorMessage),
+      duration: const Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
   Future<void> _selectDate(BuildContext context) async {
